@@ -1,0 +1,781 @@
+{
+  "dataset": {
+    "name": "MovieLens latest-small (2018-09-26)",
+    "url": "https://files.grouplens.org/datasets/movielens/ml-latest-small.zip",
+    "sha256": "696d65a3dfceac7c45750ad32df2c259311949efec81f0f144fdfb91ebc9e436",
+    "ratings": 100836,
+    "users": 610,
+    "trained_users": 607,
+    "catalog_movies": 9742,
+    "candidate_movies": 5320,
+    "genre_names": [
+      "(no genres listed)",
+      "Action",
+      "Adventure",
+      "Animation",
+      "Children",
+      "Comedy",
+      "Crime",
+      "Documentary",
+      "Drama",
+      "Fantasy",
+      "Film-Noir",
+      "Horror",
+      "IMAX",
+      "Musical",
+      "Mystery",
+      "Romance",
+      "Sci-Fi",
+      "Thriller",
+      "War",
+      "Western"
+    ],
+    "train_ratings": 80419,
+    "validation_ratings": 10059,
+    "test_ratings": 10358,
+    "train_positives": 39071,
+    "validation": {
+      "positive_ratings": 4579,
+      "cold_item_positive_ratings": 483,
+      "cold_user_positive_ratings": 2
+    },
+    "test": {
+      "positive_ratings": 4930,
+      "cold_item_positive_ratings": 618,
+      "cold_user_positive_ratings": 3
+    },
+    "split": "per-user chronological 80/10/10; ties by movie_id",
+    "positive_threshold": 4.0
+  },
+  "config": {
+    "data_dir": "/dataset",
+    "output_dir": "artifacts",
+    "epochs": 40,
+    "patience": 6,
+    "dim": 64,
+    "batch_size": 1024,
+    "negatives": 4,
+    "lr": 0.003,
+    "seed": 42,
+    "models": [
+      "sansa"
+    ]
+  },
+  "versions": {
+    "numpy": "2.5.4",
+    "torch": "2.9.1+cpu"
+  },
+  "protocol": {
+    "candidates": "All items with >=1 positive train interaction; no sampled evaluation",
+    "validation_mask": "All training ratings, including low ratings",
+    "test_mask": "All train and validation ratings, including low ratings",
+    "averaging": "Macro-average over warm users with >=1 warm positive target",
+    "selection": "Best epoch and default model selected ONLY by validation NDCG@10"
+  },
+  "models": {
+    "popularity": {
+      "validation": {
+        "recall@10": 0.05886714695493377,
+        "ndcg@10": 0.060253704917748674,
+        "evaluated_users": 551
+      },
+      "test": {
+        "recall@10": 0.05085481864536649,
+        "ndcg@10": 0.05156291180973448,
+        "evaluated_users": 563
+      }
+    },
+    "mf": {
+      "best_epoch": 39,
+      "epochs_run": 40,
+      "training_seconds": 8.835,
+      "validation": {
+        "recall@10": 0.10028283921962008,
+        "ndcg@10": 0.08657317721012356,
+        "evaluated_users": 551
+      },
+      "test": {
+        "recall@10": 0.07935238987404494,
+        "ndcg@10": 0.06619740259063278,
+        "evaluated_users": 563
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "bpr_loss": 0.6939771542339584,
+          "recall@10": 0.005188774962982286,
+          "ndcg@10": 0.004743274818624614,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 2,
+          "bpr_loss": 0.6659354240465761,
+          "recall@10": 0.01152119284173799,
+          "ndcg@10": 0.014371839043892408,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 3,
+          "bpr_loss": 0.5975539338881315,
+          "recall@10": 0.03493913804218092,
+          "ndcg@10": 0.03779264637214616,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 4,
+          "bpr_loss": 0.44521220458108857,
+          "recall@10": 0.04971569625165922,
+          "ndcg@10": 0.05166884041457487,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 5,
+          "bpr_loss": 0.31003213608784524,
+          "recall@10": 0.05408911184171651,
+          "ndcg@10": 0.05582139675245819,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 6,
+          "bpr_loss": 0.24355749123049966,
+          "recall@10": 0.05570335525263985,
+          "ndcg@10": 0.058156842951018944,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 7,
+          "bpr_loss": 0.20454408523857676,
+          "recall@10": 0.054358356763170995,
+          "ndcg@10": 0.0594756983722308,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 8,
+          "bpr_loss": 0.17817148298779514,
+          "recall@10": 0.05659909444142928,
+          "ndcg@10": 0.06095735109965987,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 9,
+          "bpr_loss": 0.15476382280641057,
+          "recall@10": 0.06097330969945287,
+          "ndcg@10": 0.06357509297595898,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 10,
+          "bpr_loss": 0.13703467372936173,
+          "recall@10": 0.06580793451158892,
+          "ndcg@10": 0.0651933784187014,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 11,
+          "bpr_loss": 0.12251189351501374,
+          "recall@10": 0.06834712344200373,
+          "ndcg@10": 0.06716956026998394,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 12,
+          "bpr_loss": 0.11126905905540915,
+          "recall@10": 0.07353440082014732,
+          "ndcg@10": 0.06861521013408586,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 13,
+          "bpr_loss": 0.1008480639436467,
+          "recall@10": 0.07636666952010225,
+          "ndcg@10": 0.06964136367254595,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 14,
+          "bpr_loss": 0.09328271834384898,
+          "recall@10": 0.07519957580484864,
+          "ndcg@10": 0.06795885419460376,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 15,
+          "bpr_loss": 0.08656798526848748,
+          "recall@10": 0.07446326128036627,
+          "ndcg@10": 0.06846230021734968,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 16,
+          "bpr_loss": 0.08045081281411187,
+          "recall@10": 0.07942133331758966,
+          "ndcg@10": 0.07196383637296055,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 17,
+          "bpr_loss": 0.07525427340458135,
+          "recall@10": 0.07786098647424003,
+          "ndcg@10": 0.0715656819679096,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 18,
+          "bpr_loss": 0.07190464008805945,
+          "recall@10": 0.0794727793778144,
+          "ndcg@10": 0.07223145441919918,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 19,
+          "bpr_loss": 0.06746547304070764,
+          "recall@10": 0.08083434977057208,
+          "ndcg@10": 0.07359268334218946,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 20,
+          "bpr_loss": 0.06490505908769324,
+          "recall@10": 0.08182489248080162,
+          "ndcg@10": 0.07330021101031677,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 21,
+          "bpr_loss": 0.061785156968052826,
+          "recall@10": 0.08037629837437435,
+          "ndcg@10": 0.07249393463335832,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 22,
+          "bpr_loss": 0.05998904431333974,
+          "recall@10": 0.08287323126737656,
+          "ndcg@10": 0.07492589008988526,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 23,
+          "bpr_loss": 0.057499856097147306,
+          "recall@10": 0.08437679041608091,
+          "ndcg@10": 0.07641962515155334,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 24,
+          "bpr_loss": 0.05636818269052433,
+          "recall@10": 0.0893339367019998,
+          "ndcg@10": 0.07870795149193047,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 25,
+          "bpr_loss": 0.05558358543506906,
+          "recall@10": 0.09076972959593352,
+          "ndcg@10": 0.07909599496471205,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 26,
+          "bpr_loss": 0.05277223361167466,
+          "recall@10": 0.08807184113158618,
+          "ndcg@10": 0.07727355995754231,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 27,
+          "bpr_loss": 0.05138217321135347,
+          "recall@10": 0.09373182279980886,
+          "ndcg@10": 0.07965153714248681,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 28,
+          "bpr_loss": 0.04968071415235118,
+          "recall@10": 0.09423516430123685,
+          "ndcg@10": 0.08024793220111599,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 29,
+          "bpr_loss": 0.04882525535780587,
+          "recall@10": 0.09587775611153104,
+          "ndcg@10": 0.08158819221708143,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 30,
+          "bpr_loss": 0.04804819488855443,
+          "recall@10": 0.09521788025767235,
+          "ndcg@10": 0.08110614561560209,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 31,
+          "bpr_loss": 0.04660796647756153,
+          "recall@10": 0.09349483796058752,
+          "ndcg@10": 0.08113350457378539,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 32,
+          "bpr_loss": 0.046438872555884296,
+          "recall@10": 0.09478227755693824,
+          "ndcg@10": 0.08186784427200614,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 33,
+          "bpr_loss": 0.04552071647649565,
+          "recall@10": 0.09623014808220565,
+          "ndcg@10": 0.08285117215346831,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 34,
+          "bpr_loss": 0.04474987064433813,
+          "recall@10": 0.09138640526188209,
+          "ndcg@10": 0.07981150503674941,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 35,
+          "bpr_loss": 0.04426499218143758,
+          "recall@10": 0.09506921438777276,
+          "ndcg@10": 0.08285814504978244,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 36,
+          "bpr_loss": 0.04357029729992848,
+          "recall@10": 0.09903261979147582,
+          "ndcg@10": 0.08622041082005184,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 37,
+          "bpr_loss": 0.04312509204636933,
+          "recall@10": 0.09827063532722914,
+          "ndcg@10": 0.08578068021475264,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 38,
+          "bpr_loss": 0.04214876401835848,
+          "recall@10": 0.09398126554928486,
+          "ndcg@10": 0.08404695982580923,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 39,
+          "bpr_loss": 0.04173754990882322,
+          "recall@10": 0.10028283921962008,
+          "ndcg@10": 0.08657317721012356,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 40,
+          "bpr_loss": 0.04162104667678137,
+          "recall@10": 0.09589948920069546,
+          "ndcg@10": 0.08621679438558529,
+          "evaluated_users": 551
+        }
+      ]
+    },
+    "neural": {
+      "best_epoch": 14,
+      "epochs_run": 20,
+      "training_seconds": 5.474,
+      "validation": {
+        "recall@10": 0.08615839024206944,
+        "ndcg@10": 0.07679505915445167,
+        "evaluated_users": 551
+      },
+      "test": {
+        "recall@10": 0.06351857310017688,
+        "ndcg@10": 0.059199816210644934,
+        "evaluated_users": 563
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "bpr_loss": 0.4775670561606241,
+          "recall@10": 0.042171428532304774,
+          "ndcg@10": 0.04098505852144765,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 2,
+          "bpr_loss": 0.31994949448301196,
+          "recall@10": 0.05880238193786462,
+          "ndcg@10": 0.05404000811559379,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 3,
+          "bpr_loss": 0.28210695545535647,
+          "recall@10": 0.059587365364481386,
+          "ndcg@10": 0.05382596377824031,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 4,
+          "bpr_loss": 0.25409730657062146,
+          "recall@10": 0.06050367940246014,
+          "ndcg@10": 0.05597450104099643,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 5,
+          "bpr_loss": 0.22641730678096464,
+          "recall@10": 0.05574881053001969,
+          "ndcg@10": 0.05448779590905346,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 6,
+          "bpr_loss": 0.20161994046787313,
+          "recall@10": 0.062414067322651444,
+          "ndcg@10": 0.0588505891453285,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 7,
+          "bpr_loss": 0.1801938945036854,
+          "recall@10": 0.061728643074983366,
+          "ndcg@10": 0.06258726965996987,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 8,
+          "bpr_loss": 0.16578268222788273,
+          "recall@10": 0.06744731282635383,
+          "ndcg@10": 0.06480771610895453,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 9,
+          "bpr_loss": 0.1489540038929326,
+          "recall@10": 0.06827758186695732,
+          "ndcg@10": 0.06514500221497166,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 10,
+          "bpr_loss": 0.1374315843300751,
+          "recall@10": 0.07453472823842912,
+          "ndcg@10": 0.06465600167104987,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 11,
+          "bpr_loss": 0.127591548332272,
+          "recall@10": 0.07367813485963502,
+          "ndcg@10": 0.06555606381176866,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 12,
+          "bpr_loss": 0.11957128593638885,
+          "recall@10": 0.07785310131533763,
+          "ndcg@10": 0.06735679919897145,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 13,
+          "bpr_loss": 0.11226834622649515,
+          "recall@10": 0.07910891744775383,
+          "ndcg@10": 0.06886222307965198,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 14,
+          "bpr_loss": 0.10580783948851084,
+          "recall@10": 0.08615839024206944,
+          "ndcg@10": 0.07679505915445167,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 15,
+          "bpr_loss": 0.10296203874955266,
+          "recall@10": 0.07818405717495953,
+          "ndcg@10": 0.06974874841607619,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 16,
+          "bpr_loss": 0.09771784055755044,
+          "recall@10": 0.07312697448071426,
+          "ndcg@10": 0.06500501643671308,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 17,
+          "bpr_loss": 0.09327279362949678,
+          "recall@10": 0.07556501171555406,
+          "ndcg@10": 0.06758415005306839,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 18,
+          "bpr_loss": 0.08992042905419316,
+          "recall@10": 0.08601630275257313,
+          "ndcg@10": 0.07091430743057622,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 19,
+          "bpr_loss": 0.08676521235042488,
+          "recall@10": 0.07919223763560543,
+          "ndcg@10": 0.0677645436521374,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 20,
+          "bpr_loss": 0.08526971973487375,
+          "recall@10": 0.08202687543857162,
+          "ndcg@10": 0.06759223748927833,
+          "evaluated_users": 551
+        }
+      ]
+    },
+    "als": {
+      "implementation": "implicit.cpu.als.AlternatingLeastSquares",
+      "config": {
+        "factors": 64,
+        "regularization": 0.1,
+        "alpha": 20.0,
+        "iterations": 30,
+        "seed": 42
+      },
+      "fold_in": {
+        "regularization": 0.1,
+        "confidence": 20.0
+      },
+      "best_epoch": 12,
+      "epochs_run": 30,
+      "history": [
+        {
+          "epoch": 1,
+          "recall@10": 0.05045228841225331,
+          "ndcg@10": 0.0424634937851896,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 2,
+          "recall@10": 0.09494386900841134,
+          "ndcg@10": 0.06824193771279996,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 3,
+          "recall@10": 0.09945095663675481,
+          "ndcg@10": 0.07132984297014204,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 4,
+          "recall@10": 0.10035312062884155,
+          "ndcg@10": 0.07494408935208927,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 5,
+          "recall@10": 0.10274524159808189,
+          "ndcg@10": 0.0756010380805558,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 6,
+          "recall@10": 0.10343251998349064,
+          "ndcg@10": 0.07616024321451509,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 7,
+          "recall@10": 0.0994408610393737,
+          "ndcg@10": 0.07583515552097429,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 8,
+          "recall@10": 0.10229356546698527,
+          "ndcg@10": 0.07893860949485194,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 9,
+          "recall@10": 0.10310781942702901,
+          "ndcg@10": 0.08053188824669921,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 10,
+          "recall@10": 0.10347146956089168,
+          "ndcg@10": 0.08322017610225543,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 11,
+          "recall@10": 0.10393324741270903,
+          "ndcg@10": 0.08403492428749494,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 12,
+          "recall@10": 0.1066671589941705,
+          "ndcg@10": 0.0850093915020473,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 13,
+          "recall@10": 0.10491176199149582,
+          "ndcg@10": 0.08497206083971046,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 14,
+          "recall@10": 0.10216171157810604,
+          "ndcg@10": 0.08416876454526957,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 15,
+          "recall@10": 0.10434764099370822,
+          "ndcg@10": 0.08391867111157568,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 16,
+          "recall@10": 0.10367287716104966,
+          "ndcg@10": 0.08331497258431114,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 17,
+          "recall@10": 0.10344942722451121,
+          "ndcg@10": 0.08335384736682828,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 18,
+          "recall@10": 0.10294930569873952,
+          "ndcg@10": 0.08299694212293149,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 19,
+          "recall@10": 0.1035149537331241,
+          "ndcg@10": 0.08257667225354617,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 20,
+          "recall@10": 0.10303854719954877,
+          "ndcg@10": 0.08269858357553252,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 21,
+          "recall@10": 0.10318699769519409,
+          "ndcg@10": 0.08290908009249814,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 22,
+          "recall@10": 0.1030516614290262,
+          "ndcg@10": 0.08169615136929943,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 23,
+          "recall@10": 0.10320703210724304,
+          "ndcg@10": 0.08171192847045511,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 24,
+          "recall@10": 0.10464403439665682,
+          "ndcg@10": 0.08269412765585406,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 25,
+          "recall@10": 0.10381005289116896,
+          "ndcg@10": 0.08204004081609832,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 26,
+          "recall@10": 0.10595863903952091,
+          "ndcg@10": 0.08363089947840525,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 27,
+          "recall@10": 0.10463293248181149,
+          "ndcg@10": 0.08308610167531706,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 28,
+          "recall@10": 0.10390226568943871,
+          "ndcg@10": 0.08242078651887734,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 29,
+          "recall@10": 0.10294746150521207,
+          "ndcg@10": 0.08168373035057865,
+          "evaluated_users": 551
+        },
+        {
+          "epoch": 30,
+          "recall@10": 0.10290122522485601,
+          "ndcg@10": 0.08152329507483115,
+          "evaluated_users": 551
+        }
+      ],
+      "training_seconds": 8.643,
+      "validation": {
+        "recall@10": 0.1066671589941705,
+        "ndcg@10": 0.0850093915020473,
+        "evaluated_users": 551
+      },
+      "test": {
+        "recall@10": 0.06814947474756683,
+        "ndcg@10": 0.05703086030431129,
+        "evaluated_users": 563
+      },
+      "library_version": "0.7.3"
+    },
+    "sansa": {
+      "implementation": "sansa==1.1.0 (official glami/sansa)",
+      "library_version": "1.1.0",
+      "config": {
+        "l2": 100.0,
+        "weight_matrix_density": 0.01,
+        "scans": 1,
+        "finetune_steps": 5,
+        "factorization": "CHOLMOD",
+        "inversion": "UMR"
+      },
+      "weights_nnz": [
+        267009,
+        267009
+      ],
+      "training_seconds": 3.769,
+      "validation": {
+        "recall@10": 0.1125714528046635,
+        "ndcg@10": 0.09379406412891919,
+        "evaluated_users": 551
+      },
+      "test": {
+        "recall@10": 0.08074410499707292,
+        "ndcg@10": 0.07622193480189957,
+        "evaluated_users": 563
+      }
+    }
+  },
+  "default_model": "sansa"
+}
